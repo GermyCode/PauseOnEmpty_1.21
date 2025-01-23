@@ -7,30 +7,19 @@ For Minecraft 1.21, I havent tested in any other version, but i play on 1.21 and
 
 This is a server side datapack, not client side.
 
-
-This datapack "pauses" the server when it detects no more players online. It sets the following gamerules when no players are online:
-
-doDaylightCycle false
-
-doWeatherCycle false
-
-doTileDrops false
-
-doMobSpawning false
-
-doMobLoot false
-
-doFireTick false
-
-randomTickSpeed 0
-
-It also removes mob ai and gravity and makes the mob silent
-
+This datapack "pauses" the server when it detects no more players online. It changes the following gamerules when no players are online:
+doDaylightCycle,
+doWeatherCycle,
+doTileDrops,
+doMobSpawning,
+doMobLoot,
+doFireTick,
+randomTickSpeed,
+It also removes mob ai and gravity and makes the mob silent.
 
 Once a player joins again it reverts the gamerules to what they were previously.
 
 The reason why its not only daylight cycle is so the game actually acts like its paused and nothing happens, instead of just setting the daylight cycle to false so time doesn't just tick by.
-
 
 # How it works
 Every tick it checks for players online.
@@ -42,7 +31,6 @@ When the datapack is loaded, it makes and stores scoreboard values that are asso
 When there are no online players, it waits 10s before pausing. When it pauses, it stores the gamerules once again just incase anything changed, then it sets the gamerules to false and changes mob data.
 
 When a player joins and the game resumes, it checks what the values are int he scoreboard and sets the gamerules accordingly. 1 for true, 0 for false   
-
 
 The issues i ran into when making it were:
 1. When the player joins, it tried to return the ai before any mobs are loaded.
@@ -57,7 +45,6 @@ The issues i ran into when making it were:
 4. Possibly: When it resumes there are mobs on the edge of the render distance that still dont have any ai.
    
    fix: this could be from testing and not an issue, but it could be from me not resuming in the same location as when paused, so mobs arent getting loaded to have their ai returned. Again this could be from testing, but is something I have noticed while playing, although I havent noticed it since testing.
-
 
 # How to install
 Drop the .zip file into the datapack location on the server and reload the server using /reload.
